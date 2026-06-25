@@ -183,8 +183,11 @@ def do_user_task(browser, username, cookies, targets):
         url="https://creator.douyin.com/creator-micro/data/following/chat",
     )
 
-    logger.info(f"账号 {username} 开始处理目标好友（共 {len(targets)} 个）")
-    
+    logger.info(f"账号 {username} 开始处理 {len(targets)} 个目标好友")
+
+    # ====================== 关键修改 ======================
+    # 直接调用 scroll_and_select_user 即可
+    # 不要再用 for 循环，因为发送逻辑已经在 scroll_and_select_user 里面了
     scroll_and_select_user(page, username, targets)
 
     logger.info(f"账号 {username} 任务完成")
